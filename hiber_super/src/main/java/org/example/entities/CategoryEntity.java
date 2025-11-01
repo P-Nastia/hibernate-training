@@ -16,6 +16,8 @@ public class CategoryEntity {
     private String name;
     @Column(name = "date_created", nullable = false)
     private LocalDateTime dateCreated;
+    @Column(name = "date_modified", nullable = true)
+    private LocalDateTime dateModified;
 
     public CategoryEntity(){
 
@@ -52,6 +54,11 @@ public class CategoryEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
+                (dateModified != null ? ", dateModified=" + dateModified : "") +
                 '}';
+    }
+    public void Update(String newName){
+        this.name = newName;
+        this.dateModified = now();
     }
 }
